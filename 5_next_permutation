@@ -1,0 +1,24 @@
+from os import *
+from sys import *
+from collections import *
+from math import *
+
+def nextPermutation(permutation, n):
+    def rever(permutation,a,b):
+        while a<b:
+            permutation[a],permutation[b]=permutation[b],permutation[a]
+            a+=1
+            b-=1
+    if permutation==None or len(permutation)<=1:
+        return permutation
+    if len(permutation)>=1: 
+        i=len(permutation)-2
+        while i>=0 and permutation[i]>=permutation[i+1]:
+            i-=1
+        if i>=0:
+            j=len(permutation)-1
+            while permutation[j]<=permutation[i]:
+                j-=1
+            permutation[i],permutation[j]=permutation[j],permutation[i]
+        rever(permutation,i+1,len(permutation)-1)
+        return permutation
